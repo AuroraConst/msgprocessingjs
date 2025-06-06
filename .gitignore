@@ -1,0 +1,70 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# scala related
+logs
+project/project
+project/target
+target
+tmp
+.bsp/
+.history
+dist
+.idea
+*.iml
+/out
+.idea_modules
+.classpath
+.project
+.bloop
+.metals/
+.scala_build/
+/media/main.js
+/media/main.js.map
+/RUNNING_PID
+.settingsz
+.DS_Store
+null
+# hidden cross project folders
+shared/.js
+shared/.jvm
+
+# temp files
+.~*
+*~
+*.orig
+
+# eclipse
+.scala_dependencies
+.buildpath
+.cache
+.target
+bin/
+project/metals.sbt
+package-lock.json
+project/metals.sbt
+
+#consider adding .env to preserve privacy if necessary
+#.env

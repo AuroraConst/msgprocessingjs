@@ -1,0 +1,38 @@
+{
+	"name": "msgprocessingjs",
+	"displayName": "msgprocessingjs",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.90.0"
+	},
+	"publisher": "com.axiommd",
+	"categories": [
+		"Other"
+	],
+	"main": "./out/extension",
+	"activationEvents": [
+		"onWebviewPanel:LaminarWebviewExt"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "mrpcharts.show",
+				"title": "Show MRPCharts",
+				"category": "Data View"
+			},
+			{
+				"command": "mrpchartjs.helloWorld",
+				"title": "Hello Arnold"
+			}
+		]
+	},
+	"devDependencies": {
+		"@scala-js/vite-plugin-scalajs": "^1.0.0",
+		"typescript": "^5.6.3"
+	},
+	"dependencies": {
+		"@types/vscode": "^1.94.0"
+
+	}
+}
