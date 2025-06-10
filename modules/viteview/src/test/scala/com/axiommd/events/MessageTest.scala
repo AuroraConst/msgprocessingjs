@@ -1,4 +1,4 @@
-package com.axiommd.commands
+package com.axiommd.events
 
 
 import com.axiommd.testutils.*

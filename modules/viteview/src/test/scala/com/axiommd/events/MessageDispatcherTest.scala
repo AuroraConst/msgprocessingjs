@@ -1,4 +1,4 @@
-package com.axiommd.commands
+package com.axiommd.events
 
 import com.axiommd.testutils.*
 import zio.json.*
@@ -45,3 +45,14 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
     }
   }
 
+  "json EventStream" should {
+    "stream json that came from converted case classes" in {
+      //set up observer for eventStream (foreach). observer dispatches the message for handler to process
+      MessageDispatcher.eventStream.foreach{
+        msg => MessageDispatcher.dispatchMessage(msg)
+      }
+      
+      //sends message into MessageDispatcher
+      MessageDispatcher.postMessage(msg = msgArg1 )
+    }
+  }

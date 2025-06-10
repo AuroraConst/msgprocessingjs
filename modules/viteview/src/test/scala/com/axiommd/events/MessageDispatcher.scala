@@ -1,4 +1,4 @@
-package com.axiommd.commands
+package com.axiommd.events
 
 import scala.collection.mutable
 import com.raquo.laminar.api.L.*
