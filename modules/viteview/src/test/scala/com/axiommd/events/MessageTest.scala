@@ -2,10 +2,9 @@ package com.axiommd.commands
 
 
 import com.axiommd.testutils.*
-import typings.moment.momentStrings.s
 
 class MessageTest extends SjsTesting:
-  case class MessageStringArg(arg: String) extends MessageTypedArg[String] 
+  
   val instance = MessageStringArg("testArg1")
   val name = instance.name
 
@@ -21,9 +20,8 @@ class MessageTest extends SjsTesting:
 
 
   "MessageTypedArgHandler" should {
-    case class MessageStringArgHandler(f: String => Unit) extends MessageTypedArgHandler[String] 
 
-    val handler = MessageStringArgHandler(arg => info(s"Handling message with arg: $arg correctly"))
+    val handler =StringHandler(arg => info(s"Handling message with arg: $arg correctly"))
 
     "handle a message with a string argument" in {
       handler.handleMessageArg(instance)

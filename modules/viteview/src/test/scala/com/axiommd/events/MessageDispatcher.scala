@@ -1,5 +1,5 @@
 package com.axiommd.commands
-import zio.json.*
+
 import scala.collection.mutable
 import com.raquo.laminar.api.L.*
 
@@ -7,7 +7,7 @@ object MessageDispatcher:
   var msgHandlerMap:  mutable.Map[String, MessageHandler] =  mutable.Map.empty
   val eventBus:EventBus[MessageArg] = new EventBus[MessageArg]()
 
-  //allows listeners to be subscribe (foreach etc)
+  //allows listeners to be subscribe (foreach etc) or transformations through map, filter etc
   val eventStream = eventBus.events
 
   def registerHandler(msg: MessageArg, handler: MessageHandler): Unit =
