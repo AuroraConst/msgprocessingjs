@@ -1,15 +1,11 @@
 package com.axiommd.events
 
 
-trait MessageHandler :
+sealed trait MessageHandler :
   protected def handleAnyArg(arg:Any): Unit
   def handleMessageArg(msg: MessageArg): Unit =
     handleAnyArg(msg.arg)
     
-trait MessageTypedArgHandler[T] extends MessageHandler:
-  val f: T => Unit
+case class MessageTypedArgHandler[T](f: T =>Unit) extends MessageHandler:
   override def handleAnyArg(a:Any): Unit =
     f(a.asInstanceOf[T])
-
-//all handler implementations are declared from here on
-case class StringHandler(f: String => Unit) extends MessageTypedArgHandler[String] 

@@ -9,10 +9,12 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
   //transform MessageArg to JSON string
   def msgToJson(msg: MessageArg): String = msg match {
     case m:MessageStringArg => m.toJson
-    case default => 
-      info(s"Unhandled message type: ${default.getClass.getSimpleName}")
-      "error"
+    case m:MessageIntArg => m.toJson  
   }
+
+  // def msgToJson(json:String): MessageArg = json match {
+  //   case MessageStringArg.name => MessageStringArg()
+  // }
 
   val jsonEventStream: EventStream[String] = MessageDispatcher.eventStream.map(msgToJson)
 
@@ -24,7 +26,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
     "add to msgHandlerMap collection" in {
       MessageDispatcher.registerHandler(
         msgArg1,
-        StringHandler{
+        MessageTypedArgHandler[String]{
           arg => info(s"Handling message with arg: $arg")
         }
       )
@@ -38,6 +40,11 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
       //set up observer for eventStream (foreach). observer dispatches the message for handler to process
       MessageDispatcher.eventStream.foreach{
         msg => MessageDispatcher.dispatchMessage(msg)
+      }
+
+      //observer for json that is created
+      jsonEventStream.foreach{x =>
+        info(s"json: $x")
       }
       
       //sends message into MessageDispatcher

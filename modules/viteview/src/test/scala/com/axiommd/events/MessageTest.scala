@@ -21,7 +21,7 @@ class MessageTest extends SjsTesting:
 
   "MessageTypedArgHandler" should {
 
-    val handler =StringHandler(arg => info(s"Handling message with arg: $arg correctly"))
+    val handler =MessageTypedArgHandler[String](arg => info(s"Handling message with arg: $arg correctly"))
 
     "handle a message with a string argument" in {
       handler.handleMessageArg(instance)
