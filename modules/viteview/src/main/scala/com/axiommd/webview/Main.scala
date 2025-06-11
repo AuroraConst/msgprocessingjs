@@ -1,11 +1,9 @@
 package com.axiommd.webview
 
-import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.L.{*}
 import org.scalajs.dom
 // import vendor.highlightjs.hljs
 
-import scala.scalajs.js
-import scala.scalajs.js.annotation.JSImport
 
 object Main :
   def consoleOut(msg: String): Unit = {

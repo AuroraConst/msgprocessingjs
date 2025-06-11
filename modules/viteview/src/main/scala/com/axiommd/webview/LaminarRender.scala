@@ -2,7 +2,7 @@ package com.axiommd.webview
 
 
 import org.scalajs.dom
-import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.L.{*}
 
 object LaminarRender :
   def consoleOut(msg: String): Unit = {
