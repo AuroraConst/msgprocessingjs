@@ -7,10 +7,7 @@ import com.raquo.airstream.core.EventStream
 class MessageDispatcherTest extends LaminarWordSpecTesting:
 
   //transform MessageArg to JSON string
-  def msgToJson(msg: MessageArg): String = msg match {
-    case m:MessageStringArg => m.toJson
-    case m:MessageIntArg => m.toJson  
-  }
+  def msgToJson(msg: MessageArg): String = msg.toJson
 
   // def msgToJson(json:String): MessageArg = json match {
   //   case MessageStringArg.name => MessageStringArg()
@@ -30,7 +27,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
           arg => info(s"Handling message with arg: $arg")
         }
       )
-      MessageDispatcher.msgHandlerMap should contain key (msgArg1.name)
+      MessageDispatcher.msgHandlerMap should contain key (derivedMessageName(msgArg1))
     }
   }
 
