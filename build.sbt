@@ -72,6 +72,19 @@ val commonSettings = Seq(
 
 )    
 
+lazy val messaging = project
+  .in(file("modules/messaging"))
+  .settings(commonSettings,
+    libraryDependencies ++= Dependencies.laminar.value,
+    libraryDependencies ++= Dependencies.scalatest.value,
+    externalNpm := baseDirectory.value,
+  ).enablePlugins(
+    ScalaJSPlugin,
+    ScalablyTypedConverterExternalNpmPlugin,
+  )
+
+
+
 
 lazy val viteview = project
   .in(file("modules/viteview"))

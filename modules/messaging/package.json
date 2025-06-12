@@ -1,0 +1,19 @@
+{
+	"name": "viteview",
+	"displayName": "viteview",
+	"description": "get started on a webview extension template",
+	"version": "0.0.1",
+	"publisher": "com.axiommd",
+	"type": "module",
+	"scripts": {
+		"build": "tsc && vite build"
+	},
+	"dependencies": {
+		"chart.js": "^2.9.4"
+	},
+	"devDependencies": {
+		"@scala-js/vite-plugin-scalajs": "^1.0.0",
+		"typescript": "^4.9.5",
+		"vite": "^4.1.0"
+	}
+}
