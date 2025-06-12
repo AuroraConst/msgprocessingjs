@@ -1,4 +1,4 @@
-package com.axiommd.commands
+package com.axiommd.events
 import zio.json.*
 // case class PatientTrackerUpdateRow (command:String,title:String,arg:String) extends Command with CommandArg[String] 
 
