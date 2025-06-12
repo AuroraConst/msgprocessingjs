@@ -1,6 +1,6 @@
 {
-	"name": "viteview",
-	"displayName": "viteview",
+	"name": "messaging",
+	"displayName": "messaging",
 	"description": "get started on a webview extension template",
 	"version": "0.0.1",
 	"publisher": "com.axiommd",
