@@ -4,8 +4,10 @@ import zio.json.*
 
 
 sealed trait MessageArg extends Product with Serializable:
+  private def derivedMessageName(a:Any) = a.getClass().getSimpleName().stripPrefix("$")
   def name: String = derivedMessageName(this)
   val arg: Any
+
 object MessageArg:
   given JsonCodec[MessageArg] = DeriveJsonCodec.gen[MessageArg]
 
@@ -14,7 +16,11 @@ sealed trait MessageTypedArg[T] extends MessageArg:
   override val arg: T
 
 
-def derivedMessageName(a:Any) = a.getClass().getSimpleName().stripPrefix("$")
+
+
+// extension (msg: MessageArg)
+//   def name: String = derivedMessageName(msg)
+
 // object MessageTypedArg :
 //   given [T : JsonCodec]  : JsonCodec[MessageTypedArg[T]] =
 //     DeriveJsonCodec.gen[MessageTypedArg[T]]   //although this is possible, because Messages will be

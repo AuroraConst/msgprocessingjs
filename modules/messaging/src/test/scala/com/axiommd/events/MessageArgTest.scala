@@ -7,8 +7,8 @@ class MessageArgTest extends SjsTesting:
 
   "this" should {
     "work" in {
-      val name = MessageStringArg("hello").asInstanceOf[MessageArg].name
-      val name1 = derivedMessageName(MessageStringArg("hello"))
+      val name = MessageStringArg("hello").name
+      val name1 = (MessageStringArg("hello")).name
       name should be (name1)
       name should be( "MessageStringArg")
       
