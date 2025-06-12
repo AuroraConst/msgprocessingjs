@@ -2,10 +2,10 @@ package com.axiommd.events
 
 import com.axiommd.testutils.*
 import zio.json.*
-import com.raquo.airstream.core.EventStream
 
 class MessageDispatcherTest extends LaminarWordSpecTesting:
   var msgResult = ""
+  //will mutate into json payload from testing of postMessage
   var msgJson = ""
   //transform MessageArg to JSON string
 
@@ -31,8 +31,6 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
   "postMessage" should {
     "emit the message to the eventBus" in {
       //set up observer for eventStream (foreach). observer dispatches the message for handler to process
-
-
       MessageDispatcher.eventStream.foreach{
         msg => MessageDispatcher.dispatchMessage(msg)
       }
@@ -40,7 +38,6 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
       //observer for json that is created
       MessageDispatcher.jsonEventStream.foreach{x =>
         msgJson = x
-        info(s"json: $x")
       }
       
       //sends message into MessageDispatcher
@@ -63,7 +60,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
       msgJson.fromJson[MessageArg] match {
         case Left(error) => fail(s"Failed to parse JSON: $error")
         case Right(parsedMsg) => 
-          info(s"Parsed message: $parsedMsg")
+          info(s"Parsed json to case class: $parsedMsg")
       }
 
     }
