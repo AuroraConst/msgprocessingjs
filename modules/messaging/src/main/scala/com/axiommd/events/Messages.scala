@@ -1,8 +1,6 @@
 package com.axiommd.events
 import zio.json.*
 
-
-
 sealed trait MessageArg extends Product with Serializable:
   private def derivedMessageName(a:Any) = a.getClass().getSimpleName().stripPrefix("$")
   def name: String = derivedMessageName(this)
