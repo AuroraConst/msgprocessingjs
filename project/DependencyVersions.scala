@@ -5,7 +5,7 @@ object DependencyVersions {
   val scalajsmacrotaskexecutor = "1.1.1"
   val laminar           = "17.1.0"
   val laminext          = "0.17.0"
-  val ziojson           = "0.7.3"
+  val ziojson           = "0.7.44"
   val borerjson         = "1.14.0"
   val betterfiles       = "3.9.2"
   val scalatest         = "3.2.19"
