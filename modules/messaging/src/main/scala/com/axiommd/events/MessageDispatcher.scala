@@ -29,6 +29,7 @@ object MessageDispatcher:
     msgHandlerMap += (mn.name ->anyHandler( handler))
 
 
+
   def postMessage(msg: MessageJson): Unit = 
     eventBus.emit(msg)
 

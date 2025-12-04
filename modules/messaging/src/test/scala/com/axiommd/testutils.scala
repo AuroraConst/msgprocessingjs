@@ -17,7 +17,7 @@ object testutils :
 
   class LaminarWordSpecTesting extends wordspec.AnyWordSpec with  BeforeAndAfter with should.Matchers :
     given owner: ManualOwner = new ManualOwner()
-    before {    }
+    // before {    }
 
     after{
       owner.killSubscriptions()
