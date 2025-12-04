@@ -16,7 +16,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting:
     "add to msgHandlerMap collection" in {
       
       MessageDispatcher.registerHandler(
-        msgArg1,
+        MessageStringArg.name,
         MessageTypedArgHandler[String]{
           arg => 
             msgResult = s"Handling message with arg: $arg"

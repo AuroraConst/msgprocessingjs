@@ -1,21 +1,19 @@
 package com.axiommd.events
 import zio.json.*
+import scala.CanEqual.derived
 
-sealed trait MessageArg extends Product with Serializable:
-  private def derivedMessageName(a:Any) = a.getClass().getSimpleName().stripPrefix("$")
-  def name: String = derivedMessageName(this)
-  val arg: Any
+sealed trait MessageName :
+  def name: String = this.getClass().getSimpleName().stripPrefix("$")
+object MessageName 
+  
+case class  MessageString(s:String) extends MessageName
 
-object MessageArg:
-  given JsonCodec[MessageArg] = DeriveJsonCodec.gen[MessageArg]
+object MessageString extends MessageName:
+  given JsonCodec[MessageString] = DeriveJsonCodec.gen[MessageString]
+
+case class MessageMyData(str: String, i:Int) extends MessageName
+object MessageMyData extends MessageName :
+  given JsonCodec[MessageMyData] = DeriveJsonCodec.gen[MessageMyData]
 
 
-sealed trait MessageTypedArg[T] extends MessageArg:
-  override val arg: T
 
-
-
-//all messages are declared from here on
-//being under sealed trait allows us to use pattern matching on the type and check for exhaustivity
-case class MessageStringArg(arg: String) extends MessageTypedArg[String] 
-case class MessageIntArg(arg:Int) extends MessageTypedArg[Int]

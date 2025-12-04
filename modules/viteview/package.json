@@ -14,7 +14,7 @@
 		"chart.js": "^2.9.4"
 	},
 	"devDependencies": {
-		"@scala-js/vite-plugin-scalajs": "^1.0.0",
+		"@scala-js/vite-plugin-scalajs": "^1.1.0",
 		"@types/chart.js": "^2.9.29",
 		"@types/vscode": "^1.94.0",
 		"@types/vscode-webview": "^1.57.0",
