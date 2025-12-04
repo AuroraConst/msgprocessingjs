@@ -6,10 +6,8 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
   
   
   before {
-    info("Setting up MessageDispatcherTest!!!!!!!!!!!!!!!!!!!!!")
     MessageDispatcher.msgHandlerMap.clear()
     msgResult = ""
-    msgJson =  ""
   }
 
 
@@ -73,28 +71,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
       
       //sends message into MessageDispatcher
       MessageDispatcher.postMessage(msg = msgArg1 )
-
       msgResult should be("testArg1")
     }
   }
 
-  "after postMessage" should {
-    "produce correct Json representation" in {
-      pending
-      //set up observer for eventStream (foreach). observer dispatches the message for handler to process
-      // MessageDispatcher.eventStream.foreach{
-      //   msg => MessageDispatcher.dispatchMessage(msg)
-      // }
-      
-      //sends message into MessageDispatcher
-      // MessageDispatcher.postMessage(msg = msgArg1 )
-
-      // msgJson.fromJson[MessageArg] match {
-      //   case Left(error) => fail(s"Failed to parse JSON: $error")
-      //   case Right(parsedMsg) => 
-      //     info(s"Parsed json to case class: $parsedMsg")
-      // }
-      
-
-    }
-  }
