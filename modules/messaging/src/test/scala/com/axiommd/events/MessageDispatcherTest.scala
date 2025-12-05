@@ -39,10 +39,10 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
     "add to Message with DefaultHandler to collection" in {
       MessageDispatcher.msgHandlerMap shouldNot contain key (msgArg1.name)
       
-      val a:MessageString.handlerType = (ms:MessageString) => messageStringHandler(ms)
+      val handler:MessageString.handlerType = (ms:MessageString) => messageStringHandler(ms)
       MessageDispatcher.registerHandler(
         MessageString,
-        a
+        handler
       )
 
       
@@ -51,27 +51,38 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
   }
 
 
+
   "postMessage" should {
     "emit the message to the eventBus" in {
-      val handler:MessageString.handlerType = (ms:MessageString) => messageStringHandler(ms)
-      MessageDispatcher.registerHandler(
-        MessageString, handler
+      val handler1:MessageMyData.handlerType = (ms:MessageMyData) => {msgResult = s"$ms";info(s"$ms");}
+      val handler2:MessageString.handlerType = (ms:MessageString) => {msgResult = s"$ms";info(s"$ms");}
+      
+      MessageDispatcher.registerHandler[MessageMyData](
+        MessageMyData, handler1
       )
-      //set up observer for eventStream (foreach). observer dispatches the message for handler to process
+      MessageDispatcher.registerHandler[MessageString](
+        MessageString, handler2
+      )
 
 
-      MessageDispatcher.eventStream.foreach{
-        msg => MessageDispatcher.dispatchMessage(msg)
-      }
 
-      //observer for json that is created
-      MessageDispatcher.jsonEventStream.foreach{x =>
-        msgJson = x
-      }
       
       //sends message into MessageDispatcher
-      MessageDispatcher.postMessage(msg = msgArg1 )
-      msgResult should be("testArg1")
+      val msg1 = MessageMyData("hello", 42)
+      val msg2 = MessageString("testStringMessage")
+      MessageDispatcher.postMessage(msg1) 
+      msgResult should be(s"$msg1")
+
+      MessageDispatcher.postMessage(msg2)
+      msgResult should be(s"$msg2")
+
+      MessageDispatcher.postMessage(msg1) 
+      msgResult should be(s"$msg1")
+
+      MessageDispatcher.postMessage(msg2)
+      msgResult should be(s"$msg2")
+      
+
     }
   }
 

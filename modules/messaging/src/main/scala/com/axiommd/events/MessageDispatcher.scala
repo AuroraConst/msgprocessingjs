@@ -3,9 +3,10 @@ package com.axiommd.events
 import scala.collection.mutable
 import com.raquo.laminar.api.L.*
 import zio.json.*
+import com.raquo.airstream.ownership.ManualOwner
 
 object MessageDispatcher:
-
+  given owner: ManualOwner = new ManualOwner()
   /**
     * convertes typed handler to Any  handler
     */
@@ -19,6 +20,11 @@ object MessageDispatcher:
   val eventBus = new EventBus[MessageJson]()
    //streams MessageArgs. allows listeners to be subscribe (foreach etc) or transformations through map, filter etc
   val eventStream = eventBus.events
+  
+  eventStream.foreach{
+        msg => MessageDispatcher.dispatchMessage(msg)
+      }
+  
 
   //streams messages as JSON string.  attach observers with foreach
   val jsonEventStream: EventStream[String] = eventStream.
@@ -27,7 +33,6 @@ object MessageDispatcher:
 
   def registerHandler[T <: MessageName](mn:MessageName, handler:T => Unit): Unit =
     msgHandlerMap += (mn.name ->anyHandler( handler))
-
 
 
   def postMessage(msg: MessageJson): Unit = 

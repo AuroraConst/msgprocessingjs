@@ -16,6 +16,6 @@ case class  MessageString(s:String) extends MessageJson
 object MessageString  extends MessageName with DefaultHandler[MessageString] 
 
 case class MessageMyData(str: String, i:Int) extends MessageJson
-object MessageMyData extends MessageName  with DefaultHandler[MessageString] 
+object MessageMyData extends MessageName  with DefaultHandler[MessageMyData] 
 
 
