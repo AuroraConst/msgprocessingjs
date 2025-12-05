@@ -34,8 +34,8 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
     }
   }
 
-  "registerDefaultHandler" should {
-    "add to Message with DefaultHandler to collection" in {
+  "registerHandler" should {
+    "add to Message with handler to collection" in {
       MessageDispatcher.msgHandlerMap shouldNot contain key (msgArg1.name)
 
       def messageStringHandler: MessageString.handlerType = (ms:MessageString) =>
@@ -52,6 +52,27 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
       MessageDispatcher.msgHandlerMap should contain key (MessageString.name)
     }
   }
+
+  "registerDefaultHandler" should {
+    "add to Message with DefaultHandler to collection" in {
+      MessageDispatcher.msgHandlerMap shouldNot contain key (msgArg1.name)
+
+      def messageStringHandler: MessageString.handlerType = (ms:MessageString) =>
+        s"Handling message with arg: ${ms.s}"
+        msgResult = ms.s
+    
+
+      MessageString.defaultHandler_=( messageStringHandler)
+      
+
+      MessageDispatcher.registerDefaultHandler(
+        MessageString
+      )
+      
+      MessageDispatcher.msgHandlerMap should contain key (MessageString.name)
+    }
+  }
+
 
 
 

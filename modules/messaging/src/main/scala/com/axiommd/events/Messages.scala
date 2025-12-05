@@ -4,7 +4,11 @@ import zio.json.*
 
 sealed trait  MessageName [T]:
   def name: String = this.getClass().getSimpleName().stripSuffix("$")
-   type  handlerType =  T => Unit
+  type  handlerType =  T => Unit
+  var defaultHandler:Option[handlerType] = None
+  def defaultHandler_=(dh:handlerType): Unit =
+    defaultHandler = Some(dh)
+
 
 sealed trait MessageJson  extends MessageName[MessageJson]
 

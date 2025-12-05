@@ -34,6 +34,11 @@ object MessageDispatcher:
   def registerHandler[T ](mn:MessageName[T], handler:T => Unit): Unit =
     msgHandlerMap += (mn.name ->anyHandler( handler))
 
+  def registerDefaultHandler[T](mn:MessageName[T]): Unit =
+    mn.defaultHandler.foreach{dh =>
+      msgHandlerMap += (mn.name ->anyHandler( dh))
+    }
+
 
   def postMessage(msg: MessageJson): Unit = 
     eventBus.emit(msg)
