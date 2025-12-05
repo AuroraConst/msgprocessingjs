@@ -16,15 +16,14 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
   var msgJson = ""
   //transform MessageArg to JSON string
 
-  def messageStringHandler(ms:MessageString): Unit =
-    s"Handling message with arg: ${ms.s}"
-    msgResult = ms.s
-
   val msgArg1 = MessageString("testArg1")
 
   
   "registerHandler" should {
     "add to msgHandlerMap collection" in {
+      def messageStringHandler: MessageString.handlerType = (ms:MessageString) =>
+        s"Handling message with arg: ${ms.s}"
+        msgResult = ms.s
       
       MessageDispatcher.registerHandler(
         MessageString,
@@ -38,6 +37,10 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
   "registerDefaultHandler" should {
     "add to Message with DefaultHandler to collection" in {
       MessageDispatcher.msgHandlerMap shouldNot contain key (msgArg1.name)
+
+      def messageStringHandler: MessageString.handlerType = (ms:MessageString) =>
+        s"Handling message with arg: ${ms.s}"
+        msgResult = ms.s
       
       val handler:MessageString.handlerType = (ms:MessageString) => messageStringHandler(ms)
       MessageDispatcher.registerHandler(
