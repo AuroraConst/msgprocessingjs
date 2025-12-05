@@ -10,7 +10,7 @@ object MessageDispatcher:
   /**
     * convertes typed handler to Any  handler
     */
-  private def anyHandler[T <: MessageName](typedHandler:T => Unit):(Any) => Unit  = (m:Any) => typedHandler(m.asInstanceOf[T])
+  private def anyHandler[T ](typedHandler:T => Unit):(Any) => Unit  = (m:Any) => typedHandler(m.asInstanceOf[T])
 
   /**
     * map of message name to handler function
@@ -31,7 +31,7 @@ object MessageDispatcher:
     map(_.toJson)
 
 
-  def registerHandler[T <: MessageName](mn:MessageName, handler:T => Unit): Unit =
+  def registerHandler[T ](mn:MessageName[T], handler:T => Unit): Unit =
     msgHandlerMap += (mn.name ->anyHandler( handler))
 
 
