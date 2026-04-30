@@ -9,3 +9,6 @@
 - when messaging works in pure scalajs...
 - create a vscode extension MessageDispatcher implementation of Mwhich delegates all messaging events through vscode extension api
 
+
+## root project
+- does not run or work in test because it relies on the vscode runtime
