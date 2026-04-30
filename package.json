@@ -33,6 +33,7 @@
 	},
 	"dependencies": {
 		"@types/vscode": "^1.94.0"
+		
 
 	}
 }

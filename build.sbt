@@ -38,18 +38,18 @@ lazy val installDependencies = Def.task[Unit] {
   }
 }
 
-lazy val open = taskKey[Unit]("open vscode")
-def openVSCodeTask: Def.Initialize[Task[Unit]] =
-  Def
-    .task[Unit] {
-      val base = baseDirectory.value
-      val log = streams.value.log
+// lazy val open = taskKey[Unit]("open vscode")
+// def openVSCodeTask: Def.Initialize[Task[Unit]] =
+//   Def
+//     .task[Unit] {
+//       val base = baseDirectory.value
+//       val log = streams.value.log
 
-      val path = base.getCanonicalPath
-      val pathOut = baseDirectory.value / "out" 
-      s"code.cmd  --extensionDevelopmentPath=$path" ! log
-      ()
-    }.dependsOn(copyFileJSArtifactsToMedia)
+//       val path = base.getCanonicalPath
+//       val pathOut = baseDirectory.value / "out" 
+//       s"code.cmd  --extensionDevelopmentPath=$path" ! log
+//       ()
+//     }.dependsOn(copyFileJSArtifactsToMedia)
     // .dependsOn(installDependencies)
 
 val commonSettings = Seq(
@@ -116,18 +116,18 @@ lazy val root = project
   .settings(
     commonSettings,
 
-    moduleName := "mrpchartjs",
-    Compile / fastOptJS / artifactPath := baseDirectory.value / "out" / "extension.js",
-    Compile / fullOptJS / artifactPath := baseDirectory.value / "out" / "extension.js",
-    open := openVSCodeTask.dependsOn(Compile / fastOptJS).value,
+    // moduleName := "mrpchartjs",
+    // Compile / fastOptJS / artifactPath := baseDirectory.value / "out" / "extension.js",
+    // Compile / fullOptJS / artifactPath := baseDirectory.value / "out" / "extension.js",
+    // open := openVSCodeTask.dependsOn(Compile / fastOptJS).value,
         // CommonJS
-    scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
+    // scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
 
     // Compile / npmDependencies ++= Seq("@types/vscode" -> "1.84.1"),
     // Tell ScalablyTyped that we manage `npm install` ourselves
     externalNpm := baseDirectory.value,
 
-    testFrameworks += new TestFramework("utest.runner.Framework")
+    // testFrameworks += new TestFramework("utest.runner.Framework")
     // publishMarketplace := publishMarketplaceTask.dependsOn(fullOptJS in Compile).value
   )
   .enablePlugins(
