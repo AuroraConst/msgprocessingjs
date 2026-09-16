@@ -13,7 +13,7 @@ class LaminarEventBusTest extends LaminarWordSpecTesting:
     "work" in {
       evStream.foreach(
         name => 
-          observedValues  = name::observedValues
+          observedValues  = name::observedValues  //prepend the new value to the observed values list
       )
 
       nameBus.emit("hello")
