@@ -10,6 +10,7 @@ sealed trait  MessageName [T]:
     defaultHandler = Some(dh)
 
 
+// Marker trait for messages that have a JSON representation
 sealed trait MessageJson  extends MessageName[MessageJson]
 
 object MessageJson :
