@@ -87,7 +87,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
       val handler1:MessageMyData.handlerType = (ms:MessageMyData) => {msgResult = s"$ms";info(s"$ms");}
       val handler2:MessageString.handlerType = (ms:MessageString) => {msgResult = s"$ms";info(s"$ms");}
       
-      
+      //note that this handler registration is an alternative and more decoupled way to associate handlers with message types (rather than assuming the defaultHandler is used)
       MessageDispatcher.registerHandler(
         MessageMyData, handler1
       )
