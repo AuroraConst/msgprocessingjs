@@ -21,10 +21,11 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
   
   "registerHandler" should {
     "add to msgHandlerMap collection" in {
-      def messageStringHandler: MessageString.handlerType = (ms:MessageString) =>
+      def messageStringHandler: MessageString.handlerType =  (ms:MessageString) => {
         s"Handling message with arg: ${ms.s}"
         msgResult = ms.s
-      
+      }
+
       MessageDispatcher.registerHandler(
         MessageString,
         messageStringHandler
@@ -38,11 +39,12 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
     "add to Message with handler to collection" in {
       MessageDispatcher.msgHandlerMap shouldNot contain key (msgArg1.name)
 
-      def messageStringHandler: MessageString.handlerType = (ms:MessageString) =>
+      
+      def handler:MessageString.handlerType = (ms:MessageString) => {
         s"Handling message with arg: ${ms.s}"
         msgResult = ms.s
+      }
       
-      val handler:MessageString.handlerType = (ms:MessageString) => messageStringHandler(ms)
       MessageDispatcher.registerHandler(
         MessageString,
         handler
