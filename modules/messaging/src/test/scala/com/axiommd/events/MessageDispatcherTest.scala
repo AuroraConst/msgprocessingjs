@@ -10,7 +10,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
     msgResult = ""
   }
 
-
+  //will mutate into the string representation of associated case class
   var msgResult = ""
   //will mutate into json payload from testing of postMessage
   var msgJson = ""
