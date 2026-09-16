@@ -64,6 +64,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
         msgResult = ms.s
     
 
+      //set the default handler for MessageString
       MessageString.defaultHandler_=( messageStringHandler)
       
 
