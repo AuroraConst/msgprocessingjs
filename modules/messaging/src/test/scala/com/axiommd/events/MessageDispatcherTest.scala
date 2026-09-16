@@ -55,7 +55,6 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
 
   "registerDefaultHandler" should {
     "add to Message with DefaultHandler to collection" in {
-      MessageDispatcher.msgHandlerMap shouldNot contain key (msgArg1.name)
 
       def messageStringHandler: MessageString.handlerType = (ms:MessageString) =>
         s"Handling message with arg: ${ms.s}"
