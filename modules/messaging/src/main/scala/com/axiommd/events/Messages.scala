@@ -1,7 +1,8 @@
 package com.axiommd.events
 import zio.json.*
 
-// Base trait for all message names with a default handler mechanism as well as a message naming convention based on the case class name
+// Base trait for all message names with a default handler lambda for handling messages of the specific type
+// as well as a message naming convention based on the case class name
 sealed trait  MessageName [T]:
   def name: String = this.getClass().getSimpleName().stripSuffix("$")
   type  handlerType =  T => Unit
