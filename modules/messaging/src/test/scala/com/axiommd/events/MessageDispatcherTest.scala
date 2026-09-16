@@ -4,7 +4,7 @@ import com.axiommd.testutils.*
 
 class MessageDispatcherTest extends LaminarWordSpecTesting :
   
-  
+  //ensures the message dispatcher is in a clean state before each test
   before {
     MessageDispatcher.msgHandlerMap.clear()
     msgResult = ""
