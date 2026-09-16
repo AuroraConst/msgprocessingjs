@@ -82,8 +82,11 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
 
   "postMessage" should {
     "emit the message to the eventBus" in {
+
+      //register handlers for MessageMyData and MessageString.  Note these handlers are defined as lambdas separate from the defaultHandler that is part of MessageMyData and MessageString respectively
       val handler1:MessageMyData.handlerType = (ms:MessageMyData) => {msgResult = s"$ms";info(s"$ms");}
       val handler2:MessageString.handlerType = (ms:MessageString) => {msgResult = s"$ms";info(s"$ms");}
+      
       
       MessageDispatcher.registerHandler(
         MessageMyData, handler1
