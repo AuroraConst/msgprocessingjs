@@ -14,7 +14,6 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
   var msgResult = ""
   //will mutate into json payload from testing of postMessage
   var msgJson = ""
-  //transform MessageArg to JSON string
 
 
   
