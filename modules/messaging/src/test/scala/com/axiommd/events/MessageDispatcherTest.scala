@@ -72,6 +72,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
         MessageString
       )
       
+      MessageString.name should be("MessageString") //note how the name is derived from the case class name
       MessageDispatcher.msgHandlerMap should contain key (MessageString.name)
     }
   }
