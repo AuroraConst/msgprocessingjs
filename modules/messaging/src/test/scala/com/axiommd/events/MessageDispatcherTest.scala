@@ -67,7 +67,7 @@ class MessageDispatcherTest extends LaminarWordSpecTesting :
       //set the default handler for MessageString
       MessageString.defaultHandler_=( messageStringHandler)
       
-
+      //register the defaultHandler associated with  MessageString 
       MessageDispatcher.registerDefaultHandler(
         MessageString
       )
